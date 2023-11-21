@@ -1,0 +1,40 @@
+- var images = ["https://vietnamtravel.com/images/2020/10/vietnamese-cuisine2.jpg","https://vietnamtravel.com/images/2020/10/vietnamese-cuisine3.jpg","https://vietnamtravel.com/images/2020/10/vietnamese-cuisine4.jpg","https://vietnamtravel.com/images/2020/10/vietnamese-cuisine6.jpg","https://vietnamtravel.com/images/2020/10/vietnamese-cuisine-north1.jpg","https://vietnamtravel.com/images/2020/10/vietnamese-cuisine9.jpg","https://vietnamtravel.com/images/2020/10/vietnamese-cuisine10.jpg","https://vietnamtravel.com/images/2020/10/vietnamese-cuisine7.jpg","https://vietnamtravel.com/images/2018/09/Hanoi-Cooking1-1.jpg","https://vietnamtravel.com/images/2019/03/Vietnam-Saigon-Streetfood-Tour-1.jpg","https://vietnamtravel.com/images/2019/03/Vietnam-hanoi-The-Street-Food-Tour-4.jpg"];
+
+- var text = {"5 Colors Sticky Rice": 'This is a cuisine of the Dao tribe which emphasizes the balance between yin and yang, seems beneficial for us.', "Fresh Spring Rolls": 'Vietnamese cuisine features with low quantity of fat. Vegetables are widely used to keep healthiness.', "White Rice": 'As the second rice exporter in the world. White rice is an important food in Vietnamese cuisine.', "Fish Sauce": 'Fish sauce or “nuoc mam” is one of major spices of Vietnamese cuisine.', "Savory Rolled Cakes": 'Hanoi’s cuisine can be seen as a representative of the Northern of Vietnam',"Steamed Rice Cake": 'They are topped with velvety mung bean, prawn floss, fried pork fat, and a drizzle of scallion oil.',"Colorful Fish Soup":'Southern cuisine has a tendency to taste sweeter than other two regions of Vietnam by adding sugar and coconut milk.',"A Thai Tribe's Dinner":'Most of the ethnic foods are not varied, culinary techniques are very unique and not inferior.',"Beef Noodle":'It is one of the top 50 best foods by CNN, “Pho” is definitely a must-try dish when you come to Vietnam.',"Vietnamese Bread":'It is one of the most famous street foods in Vietnam which filled with many ingredients and you can easily it in every corners of streets.',"Vermicelli & BBQ Pork":'“Bun cha” is blended with vermicelli, grilled pork on bamboo sticks, and sweet-and-sour sauce.'};
+
+#slider.slider(style="--img-prev:url(" + images[0] + ");")  
+  #slider-content.slider__content
+    .slider__images
+      each val, i in images
+        - var imgClassName = 'slider__images-item';
+        if i+1 === 1
+          - imgClassName += ' slider__images-item--active';
+        div(class=imgClassName data-id=i+1)
+          img(src=val)
+        
+    .slider__text
+      - var i = 0;
+      each val, key in text
+        
+        - var textClassName = 'slider__text-item';
+        if ++i === 1
+          - textClassName += ' slider__text-item--active';
+        div(class=textClassName data-id=i)
+          .slider__text-item-head
+            h3= key
+          .slider__text-item-info
+            p= val
+        
+  .slider__nav
+    .slider__nav-arrows
+      #left.slider__nav-arrow.slider__nav-arrow--left to left
+      #right.slider__nav-arrow.slider__nav-arrow--right to right
+    #slider-dots.slider__nav-dots
+      
+      - var i = 0;
+      while i++ < images.length
+        - var dotsClassName = 'slider__nav-dot';
+        if i === 1
+          - dotsClassName += ' slider__nav-dot--active';
+      
+        div(class=dotsClassName data-id=i)
